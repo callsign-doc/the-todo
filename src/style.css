@@ -1,4 +1,68 @@
+
+@font-face {
+    font-family: 'monoBold'; /* Give your font family a name */
+    src: url('fonts/iAWriterMonoS-Bold.ttf') 
+}
+
+@font-face {
+    font-family: 'quattro'; /* Give your font family a name */
+    src: url('fonts/iAWriterQuattroS-Regular.ttf') 
+}
+
+
 * {
-    color: red;
-    font-size: 40px;
+    border: 0.1px solid black;
+    font-family: 'quattro'
+}
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 0.2fr 0.8fr;
+    grid-template-rows: 1fr;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+}
+  
+
+
+/* LOCAL */
+.mainContainer {
+    grid-column: 2/3;
+    
+    padding: 50px;
+}
+#mainContainerHeader {
+    margin-top: 10px;
+    font-size: 50px;
+    font-family: 'monoBold' ,monospace;
+}
+.toDoContainer {
+    margin-top: 20px;
+}
+#toDoItem {
+    display: flex;
+    padding: 5px;
+}
+#toDoText {
+    margin-left: 4px;
+}
+
+
+
+.sidebar {
+    grid-column: 1/2;
+    padding: 20px;
+}
+#sidebarHeader {
+    font-family: 'monoBold','Courier New', Courier, monospace;
+    font-size: 30px;
+}
+.projectsContainer {
+    margin-top: 15px;
 }

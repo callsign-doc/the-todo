@@ -4,8 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div>the greatest to-do</div>
+    <div class="sidebar">
+        <div id="sidebarHeader">The ToDo</div>
+        <div class="projectsContainer">
+            <div id="projectTab">Project Ragnarok</div>
+        </div>
+
+        <div class="sidebarBtnContainer">
+            <button>+</button>
+        </div>
+    </div>
+
+    <div class="mainContainer">
+        <div id="mainContainerHeader">Project Ragnarok</div>
+        <div class="toDoContainer">
+            <div id="toDoItem">
+                <div class="progress-marker">□</div>
+                <div id="toDoText">Get rid of heimdall</div>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
 </body>
 </html>
