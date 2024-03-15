@@ -3,7 +3,5 @@ import './style.css';
 
 import { displayProjectTab } from "./displayController";
 
-displayProjectTab('Ragnarok time');
-displayProjectTab('Build a hotel');
 
 console.log("you just reached the-todo hotline...")

@@ -1,4 +1,26 @@
-export default class ToDoItem {
+export {Project, ToDoItem}
+
+class Project {
+    constructor(projectName) {
+        this.projectName = projectName;
+        this.todoItems = [];
+    }
+
+    addTodoItem(todoItem) {
+        this.todoItems.push(todoItem);
+    }
+
+    deleteTodoItem(todoItemIndex) {
+        if (todoItemIndex >= 0 && todoItemIndex < this.todoItems.length) {
+            this.todoItems.splice(todoItemIndex, 1);
+        } else {
+            console.error('Invalid todo item index.');
+        }
+    }
+}
+
+
+class ToDoItem {
     constructor(done, text, moreInfoText, dueDate, priority, subTextContent) {
         this.done = done; // Boolean indicating whether the todo item is done
         this.text = text; // Main text of the todo item
@@ -13,3 +35,5 @@ export default class ToDoItem {
         this.done = !this.done;
     }
 }
+
+

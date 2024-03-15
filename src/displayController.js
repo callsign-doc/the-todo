@@ -1,14 +1,14 @@
 export {displayProjectTab as createProjectTab}
-import ToDoItem from "./objects";
+import {ToDoItem, Project} from "./objects";
 
-function displayProjectTab(projectName) {
+function displayProjectTab(project) {
     // Create a new div element
     var projectDiv = document.createElement("div");
 
     // Set attributes for the div element
     projectDiv.setAttribute("id", "projectTab");
     projectDiv.setAttribute("class", "interactive");
-    projectDiv.textContent = projectName;
+    projectDiv.textContent = project.projectName;
 
     // Find the projects container by class name
     var projectsContainer = document.querySelector(".projectsContainer");
@@ -87,4 +87,10 @@ let dummyTodoItem = new ToDoItem(
     'Read the project documentation thoroughly before starting' // subTextContent
 );
 
+
+
+
+
+let dummyProject = new Project('Dummy Project');
+displayProjectTab(dummyProject);
 displayTodoItem(dummyTodoItem);
