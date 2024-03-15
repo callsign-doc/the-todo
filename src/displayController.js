@@ -39,7 +39,7 @@ function displayAllProjects() {
 }
 
 
-function displayTodoItem(todoItem) {
+function displayTodoItem(todoItem, index) {
     // Create elements
     const toDoContainer = document.createElement('div');
     const toDoItemElem = document.createElement('div');
@@ -54,9 +54,9 @@ function displayTodoItem(todoItem) {
     // Set classes and IDs
     toDoContainer.className = 'toDoContainer';
     toDoItemElem.className = 'interactive';
-    toDoItemElem.id = 'toDoItem'; // Set the id for the to-do item
+    toDoItemElem.id = `toDoItem-${index}`; // Set the id for the to-do item using the index
     progressMarker.className = 'progress-marker';
-    toDoText.id = 'toDoText';
+    toDoText.className = 'todoText'; // Use className instead of id for toDoText
     moreInfo.className = 'moreInfo';
     todoInfoContainer.className = 'todoInfoContainer';
     dueDate.className = 'dueDate';
@@ -90,6 +90,46 @@ function displayTodoItem(todoItem) {
     }
 }
 
+
+// export function displaySelectedProject(project) {
+//     // Get a reference to the mainContainer element
+//     var mainContainer = document.querySelector('.mainContainer');
+
+//     // Loop through each child node of mainContainer and remove it
+//     while (mainContainer.firstChild) {
+//         mainContainer.removeChild(mainContainer.firstChild);
+//     }
+
+//     let todoIndex = 0;
+
+//     // Create main container header
+//     const mainContainerHeader = document.createElement('div');
+//     mainContainerHeader.id = 'mainContainerHeader';
+//     mainContainerHeader.textContent = project.projectName;
+
+//     // Append main container header to the document body
+//     document.body.appendChild(mainContainerHeader);
+
+//     // Iterate over todo items
+//     project.todoItems.forEach((item) => {
+//         console.log(item.text);
+
+//         todoIndex += 1;
+//         console.log(todoIndex);
+//     });
+// }
+
+export function displaySelectedProject(project) {
+    // Create header div
+    var headerDiv = document.createElement("div");
+    headerDiv.id = "mainContainerHeader";
+    headerDiv.textContent = project.projectName;
+
+    // Append header div to main container
+    document.querySelector('.mainContainer').appendChild(headerDiv);
+
+    console.log(project.todoItems[0]);
+}
 
 
 

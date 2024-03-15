@@ -2,9 +2,9 @@ export {Project, ToDoItem, projects}
 
 
 class Project {
-    constructor(projectName) {
+    constructor(projectName, todoItems) {
         this.projectName = projectName;
-        this.todoItems = [];
+        this.todoItems = todoItems;
 
         projects.push(this);
     }
