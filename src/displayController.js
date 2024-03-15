@@ -1,15 +1,10 @@
-export {displayProjectTab, displayTodoItem};
-
-
+export {displayProjectTab, displayTodoItem, displayAllProjects};
+import { projects } from "./objects";
 
 
 
 //MAIN LOGIC-----------
-
-
-
-
-function displayProjectTab(project) {
+function displayProjectTab(project, index) {
     // Create a new div element
     var projectDiv = document.createElement("div");
 
@@ -17,6 +12,9 @@ function displayProjectTab(project) {
     projectDiv.setAttribute("id", "projectTab");
     projectDiv.setAttribute("class", "interactive");
     projectDiv.textContent = project.projectName;
+
+    // Set the index attribute
+    projectDiv.setAttribute("data-index", index);
 
     // Find the projects container by class name
     var projectsContainer = document.querySelector(".projectsContainer");
@@ -30,6 +28,15 @@ function displayProjectTab(project) {
     }
 }
 
+function displayAllProjects() {
+    // reset index
+    let index = 0
+
+    projects.forEach(project => {
+        displayProjectTab(project, index);
+        index += 1;
+    });
+}
 
 
 function displayTodoItem(todoItem) {
