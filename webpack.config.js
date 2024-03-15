@@ -27,4 +27,5 @@ module.exports = {
       filename: 'index.html', // Output HTML file name
     }),
   ],
+  devtool: 'source-map', // Add this line to enable source maps
 };

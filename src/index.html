@@ -4,30 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 
 <body>
     <div class="sidebar">
         <div id="sidebarHeader">The ToDo</div>
+
         <div class="projectsContainer">
-            <div id="projectTab">Project Ragnarok</div>
+            
         </div>
 
         <div class="sidebarBtnContainer">
-            <button>+</button>
+            <button id="addProjectBtn">+</button>
         </div>
     </div>
 
     <div class="mainContainer">
         <div id="mainContainerHeader">Project Ragnarok</div>
+
         <div class="toDoContainer">
-            <div id="toDoItem">
+            <div id="toDoItem" class="interactive">
                 <div class="progress-marker">□</div>
                 <div id="toDoText">Get rid of heimdall</div>
+                <div class="moreInfo">more</div>
+
+                <div class="todoInfoContainer">
+                    <div class="dueDate">3 Feb '24</div>
+                    <div class="priority">!!!</div>
+                </div>
             </div>
+
+            <div class="subText">Gifted with sight and hearing so remarkably keen, he could detect a leaf falling on the other side of the world, or hear the soft whispers of the gods from realms away. Yes, even in those grand tales you love, Heimdall stands a cut above, watching over Asgard with eyes that miss nothing.</div>
         </div>
+        
     </div>
-    <script src="index.js"></script>
 </body>
 </html>
