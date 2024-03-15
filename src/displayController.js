@@ -1,5 +1,13 @@
-export {displayProjectTab as createProjectTab}
-import {ToDoItem, Project} from "./objects";
+export {displayProjectTab, displayTodoItem};
+
+
+
+
+
+//MAIN LOGIC-----------
+
+
+
 
 function displayProjectTab(project) {
     // Create a new div element
@@ -77,20 +85,4 @@ function displayTodoItem(todoItem) {
 
 
 
-// Creating an instance of ToDoItem
-let dummyTodoItem = new ToDoItem(
-    false, // done
-    'Complete project', // text
-    'Read documentation', // moreInfoText
-    '2024-03-31', // dueDate
-    '!!', // priority
-    'Read the project documentation thoroughly before starting' // subTextContent
-);
 
-
-
-
-
-let dummyProject = new Project('Dummy Project');
-displayProjectTab(dummyProject);
-displayTodoItem(dummyTodoItem);
