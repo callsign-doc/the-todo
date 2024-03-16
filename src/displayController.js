@@ -2,6 +2,20 @@ export {displayProjectTab, displayTodoItem, displayAllProjects};
 import { projects } from "./objects";
 
 let selectedProject = projects[0];
+const projectsContainer = document.querySelector('.projectsContainer');
+
+projectsContainer.addEventListener('click', function(event) {
+    const clickedItem = event.target.closest('#projectTab');
+    if (clickedItem) {
+        const index = parseInt(clickedItem.getAttribute('data-index'), 10);
+
+        selectedProject = projects[index];
+        // alert(selectedProject.projectName);
+        
+        clearOutMainContainer();
+        displaySelectedProject(selectedProject);
+    }
+});
 
 export function displayDefault() {
     displayAllProjects();
@@ -105,7 +119,7 @@ function displayTodoItem(todoItem, index) {
 
 
 export function displaySelectedProject(project) {
-    let index = 0;
+    let itemIndex = 0;
 
     // Create header div
     var headerDiv = document.createElement("div");
@@ -116,10 +130,16 @@ export function displaySelectedProject(project) {
     document.querySelector('.mainContainer').appendChild(headerDiv);
 
     project.todoItems.forEach(item => {
-        displayTodoItem(item, index);
-        index += 1;
+        displayTodoItem(item, itemIndex);
+        itemIndex += 1;
     })
 }
 
+function clearOutMainContainer() {
+    const mainContainer = document.querySelector('.mainContainer');
 
+    while (mainContainer.firstChild) {
+        mainContainer.removeChild(mainContainer.firstChild);
+    }
+}
 

@@ -64,7 +64,7 @@ let dummyTodoItem2 = new ToDoItem(
 let projects = [];
 
 let dummyProject = new Project('Dummy Project One', [dummyTodoItem,  dummyTodoItem2]);
-let dummyProject2 = new Project('Dummy Project 2', [dummyTodoItem,  dummyTodoItem2]);
+let dummyProject2 = new Project('Dummy Project 2', [dummyTodoItem,  dummyTodoItem2, dummyTodoItem]);
 
 console.log(projects)
 // ----------------------------
