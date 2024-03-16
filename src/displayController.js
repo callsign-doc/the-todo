@@ -81,10 +81,16 @@ function displayTodoItem(todoItem, index) {
     toDoItem.appendChild(toDoText);
 
     // Create more info button
-    const moreInfo = document.createElement('div');
+    const moreInfo = document.createElement('button');
     moreInfo.classList.add('moreInfo');
-    moreInfo.textContent = 'more';
+    moreInfo.textContent = 'ℹ️';
     toDoItem.appendChild(moreInfo);
+
+    // Create edit button
+    const editButton = document.createElement('button');
+    editButton.classList.add('editButton'); // You can add a class for styling if needed
+    editButton.textContent = '✍️';
+    toDoItem.appendChild(editButton);
 
     // Create todo info container
     const todoInfoContainer = document.createElement('div');
