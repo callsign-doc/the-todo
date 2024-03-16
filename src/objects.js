@@ -44,6 +44,11 @@ class ToDoItem {
         this.showMoreInfo = !this.showMoreInfo;
     }
 
+    editTodo() {
+        this.text = prompt('Text');
+        this.subTextContent = prompt('Description');
+    }
+
 }
 
 

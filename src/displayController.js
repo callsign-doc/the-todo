@@ -115,6 +115,19 @@ function displayTodoItem(todoItem, index) {
     editButton.textContent = '✍️';
     toDoItem.appendChild(editButton);
 
+    // Add event listener to the edit button
+    editButton.addEventListener('click', function() {
+        // Retrieve the data-index attribute from the parent todo item
+        let dataIndex = parseInt(toDoItem.getAttribute('data-index'));
+        selectedProject.todoItems[dataIndex].editTodo();
+
+        clearOutMainContainer();
+        displaySelectedProject(selectedProject);
+
+    });
+
+
+    
     // Create todo info container
     const todoInfoContainer = document.createElement('div');
     todoInfoContainer.classList.add('todoInfoContainer');
