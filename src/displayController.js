@@ -1,9 +1,14 @@
 export {displayProjectTab, displayTodoItem, displayAllProjects};
 import { projects } from "./objects";
 
-let selectedProject = projects[0];
 const projectsContainer = document.querySelector('.projectsContainer');
+const moreInfoBtn = document.querySelector('.moreInfo');
 
+let selectedProject = projects[0];
+
+
+
+// EVENT LISTENERS-------------------------------
 projectsContainer.addEventListener('click', function(event) {
     const clickedItem = event.target.closest('#projectTab');
     if (clickedItem) {
@@ -16,6 +21,11 @@ projectsContainer.addEventListener('click', function(event) {
         displaySelectedProject(selectedProject);
     }
 });
+
+
+//-------------------------------
+
+
 
 export function displayDefault() {
     displayAllProjects();
@@ -86,6 +96,19 @@ function displayTodoItem(todoItem, index) {
     moreInfo.textContent = 'ℹ️';
     toDoItem.appendChild(moreInfo);
 
+    moreInfo.addEventListener('click', function() {
+        // Retrieve the data-index attribute from the parent todo item
+        let dataIndex = parseInt(toDoItem.getAttribute('data-index'));
+        selectedProject.todoItems[dataIndex].toggleMoreInfo();
+
+        clearOutMainContainer();
+        displaySelectedProject(selectedProject);
+
+        // Use the retrieved index as needed
+        console.log(`More info button clicked for todo item with index ${dataIndex}!`);
+    });
+
+
     // Create edit button
     const editButton = document.createElement('button');
     editButton.classList.add('editButton'); // You can add a class for styling if needed
@@ -112,11 +135,14 @@ function displayTodoItem(todoItem, index) {
 
     container.appendChild(toDoItem);
 
-    // Create subtext
-    const subText = document.createElement('div');
-    subText.classList.add('subText');
-    subText.textContent = todoItem.subTextContent;
-    container.appendChild(subText);
+    if (todoItem.showMoreInfo) {
+        // Create subtext
+        const subText = document.createElement('div');
+        subText.classList.add('subText');
+        subText.textContent = todoItem.subTextContent;
+        container.appendChild(subText);
+    }
+    
 
     // Get the existing main container
     const mainContainer = document.querySelector('.mainContainer');

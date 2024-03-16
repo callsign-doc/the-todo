@@ -68,7 +68,12 @@ html, body {
     font-family: 'quattro';
     margin-left: 5px;
 }
-
+.moreInfo:hover, .editButton:hover {
+    background-color: rgb(216, 216, 216);
+}
+.moreInfo:active, .editButton:active {
+    background-color: rgb(195, 195, 195);
+}
 
 .todoInfoContainer {
     display: flex;

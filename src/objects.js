@@ -31,12 +31,19 @@ class ToDoItem {
         this.dueDate = dueDate; // Due date of the todo item
         this.priority = priority; // Priority level, e.g., '!!!'
         this.subTextContent = subTextContent; // Additional description or subtext
+
+        this.showMoreInfo = false;
     }
 
     // Method to toggle the "done" status
     toggleDone() {
         this.done = !this.done;
     }
+
+    toggleMoreInfo() {
+        this.showMoreInfo = !this.showMoreInfo;
+    }
+
 }
 
 
