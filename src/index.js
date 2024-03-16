@@ -4,11 +4,6 @@ import './style.css';
 import * as displayController from "./displayController";
 import {ToDoItem, Project, projects} from "./objects";
 
-let selectedProject = projects[0];
+displayController.displayDefault();
 
-displayController.displayAllProjects();
-
-displayController.displaySelectedProject(selectedProject);
-
-
-console.log("you just reached the-todo hotline...")
+console.log("you just reached the-todo hotline biatch...")

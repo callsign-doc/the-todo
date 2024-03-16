@@ -1,7 +1,12 @@
 export {displayProjectTab, displayTodoItem, displayAllProjects};
 import { projects } from "./objects";
 
+let selectedProject = projects[0];
 
+export function displayDefault() {
+    displayAllProjects();
+    displaySelectedProject(selectedProject);
+}
 
 //MAIN LOGIC-----------
 function displayProjectTab(project, index) {
@@ -38,88 +43,70 @@ function displayAllProjects() {
     });
 }
 
-
 function displayTodoItem(todoItem, index) {
-    // Create elements
-    const toDoContainer = document.createElement('div');
-    const toDoItemElem = document.createElement('div');
+    // Create main container
+    const container = document.createElement('div');
+    container.classList.add('toDoContainer');
+
+    // Create interactive todo item
+    const toDoItem = document.createElement('div');
+    toDoItem.classList.add('interactive');
+    toDoItem.id = 'toDoItem';
+    toDoItem.setAttribute('data-index', index);
+
+    // Create progress marker
     const progressMarker = document.createElement('div');
+    progressMarker.classList.add('progress-marker');
+    progressMarker.textContent = todoItem.done ? '■' : '□';
+    toDoItem.appendChild(progressMarker);
+
+    // Create todo text
     const toDoText = document.createElement('div');
-    const moreInfo = document.createElement('div');
-    const todoInfoContainer = document.createElement('div');
-    const dueDate = document.createElement('div');
-    const priority = document.createElement('div');
-    const subText = document.createElement('div');
-
-    // Set classes and IDs
-    toDoContainer.className = 'toDoContainer';
-    toDoItemElem.className = 'interactive';
-    toDoItemElem.id = `toDoItem-${index}`; // Set the id for the to-do item using the index
-    progressMarker.className = 'progress-marker';
-    toDoText.className = 'todoText'; // Use className instead of id for toDoText
-    moreInfo.className = 'moreInfo';
-    todoInfoContainer.className = 'todoInfoContainer';
-    dueDate.className = 'dueDate';
-    priority.className = 'priority';
-    subText.className = 'subText';
-
-    // Set text content from todoItem properties
-    progressMarker.textContent = todoItem.done ? 'x' : 'o';
+    toDoText.id = 'toDoText';
     toDoText.textContent = todoItem.text;
+    toDoItem.appendChild(toDoText);
+
+    // Create more info button
+    const moreInfo = document.createElement('div');
+    moreInfo.classList.add('moreInfo');
     moreInfo.textContent = 'more';
+    toDoItem.appendChild(moreInfo);
+
+    // Create todo info container
+    const todoInfoContainer = document.createElement('div');
+    todoInfoContainer.classList.add('todoInfoContainer');
+
+    // Create due date
+    const dueDate = document.createElement('div');
+    dueDate.classList.add('dueDate');
     dueDate.textContent = todoItem.dueDate;
-    priority.textContent = todoItem.priority;
-    subText.textContent = todoItem.subTextContent;
-
-    // Append children
-    toDoContainer.appendChild(toDoItemElem);
-    toDoItemElem.appendChild(progressMarker);
-    toDoItemElem.appendChild(toDoText);
-    toDoItemElem.appendChild(moreInfo);
-    toDoItemElem.appendChild(todoInfoContainer);
     todoInfoContainer.appendChild(dueDate);
-    todoInfoContainer.appendChild(priority);
-    toDoContainer.appendChild(subText);
 
-    // Find the main container and append the to-do container
+    // Create priority
+    const priority = document.createElement('div');
+    priority.classList.add('priority');
+    priority.textContent = todoItem.priority;
+    todoInfoContainer.appendChild(priority);
+
+    toDoItem.appendChild(todoInfoContainer);
+
+    container.appendChild(toDoItem);
+
+    // Create subtext
+    const subText = document.createElement('div');
+    subText.classList.add('subText');
+    subText.textContent = todoItem.subTextContent;
+    container.appendChild(subText);
+
+    // Get the existing main container
     const mainContainer = document.querySelector('.mainContainer');
-    if (mainContainer) {
-        mainContainer.appendChild(toDoContainer);
-    } else {
-        console.error('Main container not found.');
-    }
+    mainContainer.appendChild(container);
 }
 
 
-// export function displaySelectedProject(project) {
-//     // Get a reference to the mainContainer element
-//     var mainContainer = document.querySelector('.mainContainer');
-
-//     // Loop through each child node of mainContainer and remove it
-//     while (mainContainer.firstChild) {
-//         mainContainer.removeChild(mainContainer.firstChild);
-//     }
-
-//     let todoIndex = 0;
-
-//     // Create main container header
-//     const mainContainerHeader = document.createElement('div');
-//     mainContainerHeader.id = 'mainContainerHeader';
-//     mainContainerHeader.textContent = project.projectName;
-
-//     // Append main container header to the document body
-//     document.body.appendChild(mainContainerHeader);
-
-//     // Iterate over todo items
-//     project.todoItems.forEach((item) => {
-//         console.log(item.text);
-
-//         todoIndex += 1;
-//         console.log(todoIndex);
-//     });
-// }
-
 export function displaySelectedProject(project) {
+    let index = 0;
+
     // Create header div
     var headerDiv = document.createElement("div");
     headerDiv.id = "mainContainerHeader";
@@ -128,7 +115,10 @@ export function displaySelectedProject(project) {
     // Append header div to main container
     document.querySelector('.mainContainer').appendChild(headerDiv);
 
-    console.log(project.todoItems[0]);
+    project.todoItems.forEach(item => {
+        displayTodoItem(item, index);
+        index += 1;
+    })
 }
 
 
