@@ -29,7 +29,19 @@ class ToDoItem {
         this.text = text; // Main text of the todo item
         this.moreInfoText = moreInfoText; // Text for the more info section
         this.dueDate = dueDate; // Due date of the todo item
-        this.priority = priority; // Priority level, e.g., '!!!'
+        
+    // Adjust priority dynamically based on its numeric value
+    if (priority === 1) {
+        this.priority = '⁉️';
+    } else if (priority === 2) {
+        this.priority = '🧀';
+    } else if (priority === 3) {
+        this.priority = '🍐';
+    } else {
+        // Handle other cases if needed
+        this.priority = priority; // Default value if priority is not 1, 2, or 3
+    }
+
         this.subTextContent = subTextContent; // Additional description or subtext
 
         this.showMoreInfo = false;
@@ -60,7 +72,7 @@ let dummyTodoItem = new ToDoItem(
     'Complete project', // text
     'Read documentation', // moreInfoText
     '2024-03-31', // dueDate
-    '!!', // priority
+    1, // priority
     'Read the project documentation thoroughly before starting' // subTextContent
 );
 let dummyTodoItem2 = new ToDoItem(
@@ -68,7 +80,7 @@ let dummyTodoItem2 = new ToDoItem(
     'Review project plan', // text
     'Check milestones and deadlines', // moreInfoText
     '2024-04-15', // dueDate
-    '!', // priority
+    2, // priority
     'Make sure to understand the project timeline and goals' // subTextContent
 );
 
