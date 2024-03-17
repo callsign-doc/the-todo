@@ -90,6 +90,8 @@ function displayTodoItem(todoItem, index) {
     toDoText.textContent = todoItem.text;
     toDoItem.appendChild(toDoText);
 
+
+
     // Create more info button
     const moreInfo = document.createElement('button');
     moreInfo.classList.add('moreInfo');
@@ -126,6 +128,24 @@ function displayTodoItem(todoItem, index) {
 
     });
 
+
+    // Create delete button
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('deleteButton');
+    deleteButton.textContent = '❌';
+    toDoItem.appendChild(deleteButton);
+
+    // Add event listener to the delete button
+    deleteButton.addEventListener('click', function() {
+        let dataIndex = parseInt(toDoItem.getAttribute('data-index'));
+        selectedProject.todoItems.splice(dataIndex, 1);
+
+        clearOutMainContainer();
+        displaySelectedProject(selectedProject);
+    });
+
+
+    
 
     
     // Create todo info container
