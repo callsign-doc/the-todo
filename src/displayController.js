@@ -1,10 +1,10 @@
 export {displayProjectTab, displayTodoItem, displayAllProjects};
-import { projects } from "./objects";
+import * as Objects from "./objects";
 
 const projectsContainer = document.querySelector('.projectsContainer');
 const moreInfoBtn = document.querySelector('.moreInfo');
 
-let selectedProject = projects[0];
+let selectedProject = Objects.projects[0];
 
 
 
@@ -14,7 +14,7 @@ projectsContainer.addEventListener('click', function(event) {
     if (clickedItem) {
         const index = parseInt(clickedItem.getAttribute('data-index'), 10);
 
-        selectedProject = projects[index];
+        selectedProject = Objects.projects[index];
         // alert(selectedProject.projectName);
         
         clearOutMainContainer();
@@ -61,7 +61,7 @@ function displayAllProjects() {
     // reset index
     let index = 0
 
-    projects.forEach(project => {
+    Objects.projects.forEach(project => {
         displayProjectTab(project, index);
         index += 1;
     });
@@ -198,7 +198,29 @@ export function displaySelectedProject(project) {
         displayTodoItem(item, itemIndex);
         itemIndex += 1;
     })
+    
+    renderAddTodoBtn();
 }
+
+function renderAddTodoBtn() {
+    const addButton = document.createElement('button');
+    addButton.classList.add('addTodoBtn');
+    addButton.textContent = '[➕+]';
+
+    const mainContainer = document.querySelector('.mainContainer');
+    mainContainer.appendChild(addButton);
+
+    // add to do functionality dummy
+    addButton.addEventListener("click", function() {
+        let newItem = Objects.createDefaultTodo(); // Assuming createNewItem() is a function that creates a new todo item
+        selectedProject.addTodoItem(newItem);
+
+        clearOutMainContainer();
+        displaySelectedProject(selectedProject);
+    });
+}
+
+
 
 function clearOutMainContainer() {
     const mainContainer = document.querySelector('.mainContainer');

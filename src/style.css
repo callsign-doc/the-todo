@@ -90,7 +90,9 @@ html, body {
     color: red;
     font-weight: bold;
 }
-
+.addTodoBtn {
+    margin-top: 10px;
+}
 
 
 .sidebar {

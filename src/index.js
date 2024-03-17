@@ -2,7 +2,7 @@
 import './style.css';
 
 import * as displayController from "./displayController";
-import {ToDoItem, Project, projects} from "./objects";
+import * as Objects from "./objects";
 
 displayController.displayDefault();
 

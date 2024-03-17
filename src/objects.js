@@ -63,7 +63,18 @@ class ToDoItem {
 
 }
 
+export function createDefaultTodo() {
+    let item = new ToDoItem(
+        false, // done
+        prompt('Do what?'), // text
+        prompt('Description'), // moreInfoText
+        '2024-03-31', // dueDate
+        prompt('Priority from 3 -> 1'), // priority
+        'Read the project documentation thoroughly before starting' // subTextContent
+    );
 
+    return item;
+}
 
 
 // OBJECTS----------------------------
