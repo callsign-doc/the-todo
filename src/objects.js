@@ -1,4 +1,5 @@
 export {Project, ToDoItem, projects}
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
 
 class Project {
@@ -82,7 +83,7 @@ let dummyTodoItem = new ToDoItem(
     false, // done
     'Complete project', // text
     'Read documentation', // moreInfoText
-    '2024-03-31', // dueDate
+    format(new Date(), "d MMM"), // dueDate
     1, // priority
     'Read the project documentation thoroughly before starting' // subTextContent
 );
@@ -90,7 +91,7 @@ let dummyTodoItem2 = new ToDoItem(
     false, // done
     'Review project plan', // text
     'Check milestones and deadlines', // moreInfoText
-    '2024-04-15', // dueDate
+    format(new Date(), "d MMM"), // dueDate
     2, // priority
     'Make sure to understand the project timeline and goals' // subTextContent
 );

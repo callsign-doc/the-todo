@@ -1,6 +1,7 @@
 export {displayProjectTab, displayTodoItem, displayAllProjects};
 import * as Objects from "./objects";
 
+
 const projectsContainer = document.querySelector('.projectsContainer');
 const moreInfoBtn = document.querySelector('.moreInfo');
 
