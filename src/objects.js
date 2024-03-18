@@ -1,6 +1,7 @@
 export {Project, ToDoItem, projects}
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
+let todayDate = format(new Date(), "d MMMM");
 
 class Project {
     constructor(projectName, todoItems) {
@@ -21,8 +22,14 @@ class Project {
             console.error('Invalid todo item index.');
         }
     }
+
+    
 }
 
+function logMessage() {
+    console.log('Console logger: This is JSON SPARTAAA');
+}
+Project.prototype.logMessage = logMessage;
 
 class ToDoItem {
     constructor(done, text, moreInfoText, dueDate, priority, subTextContent) {
@@ -32,11 +39,11 @@ class ToDoItem {
         this.dueDate = dueDate; // Due date of the todo item
         
     // Adjust priority dynamically based on its numeric value
-    if (priority === 1) {
+    if (priority === '1') {
         this.priority = '⁉️';
-    } else if (priority === 2) {
+    } else if (priority === '2') {
         this.priority = '🧀';
-    } else if (priority === 3) {
+    } else if (priority === '3') {
         this.priority = '🍐';
     } else {
         // Handle other cases if needed
@@ -68,10 +75,10 @@ export function createDefaultTodo() {
     let item = new ToDoItem(
         false, // done
         prompt('Do what?'), // text
-        prompt('Description'), // moreInfoText
-        '2024-03-31', // dueDate
+        'irrelevant crap', // moreInfoText
+        todayDate, // dueDate
         prompt('Priority from 3 -> 1'), // priority
-        'Read the project documentation thoroughly before starting' // subTextContent
+        prompt('Description')
     );
 
     return item;
@@ -83,7 +90,7 @@ let dummyTodoItem = new ToDoItem(
     false, // done
     'Complete project', // text
     'Read documentation', // moreInfoText
-    format(new Date(), "d MMM"), // dueDate
+    todayDate, // dueDate
     1, // priority
     'Read the project documentation thoroughly before starting' // subTextContent
 );
@@ -91,7 +98,7 @@ let dummyTodoItem2 = new ToDoItem(
     false, // done
     'Review project plan', // text
     'Check milestones and deadlines', // moreInfoText
-    format(new Date(), "d MMM"), // dueDate
+    todayDate, // dueDate
     2, // priority
     'Make sure to understand the project timeline and goals' // subTextContent
 );
@@ -102,5 +109,18 @@ let projects = [];
 let dummyProject = new Project('Dummy Project One', [dummyTodoItem,  dummyTodoItem2]);
 let dummyProject2 = new Project('Dummy Project 2', [dummyTodoItem,  dummyTodoItem2, dummyTodoItem]);
 
+
 console.log(projects)
+
+// ----------------------------
+// DUMMY OBJECTS TO TEST JSON -----------------
+let dummyProject3 = new Project('Dummy Project 3', [dummyTodoItem,  dummyTodoItem2]);
+
+let jsonString = JSON.stringify(dummyProject3);
+let parsedObj = JSON.parse(jsonString);
+jsonString.logMessage();
+
+
+
+
 // ----------------------------
