@@ -4,8 +4,11 @@ import * as Objects from "./objects";
 
 const projectsContainer = document.querySelector('.projectsContainer');
 const moreInfoBtn = document.querySelector('.moreInfo');
+const addProjectBtn = document.querySelector('#addProjectBtn');
+const deleteProjectBtn = document.querySelector('#deleteProjectBtn');
 
 let selectedProject = Objects.projects[0];
+let selectedProjectIndex = 0;
 
 
 
@@ -14,6 +17,7 @@ projectsContainer.addEventListener('click', function(event) {
     const clickedItem = event.target.closest('#projectTab');
     if (clickedItem) {
         const index = parseInt(clickedItem.getAttribute('data-index'), 10);
+        selectedProjectIndex = index;
 
         selectedProject = Objects.projects[index];
         // alert(selectedProject.projectName);
@@ -23,7 +27,25 @@ projectsContainer.addEventListener('click', function(event) {
     }
 });
 
+addProjectBtn.addEventListener('click', () => {
+    let project = new Objects.Project(
+        prompt('Project Name'),
+        [], //empty todo
+    )
 
+    updateProjectsTabUI();
+})
+
+deleteProjectBtn.addEventListener('click', () => {
+    Objects.projects.splice(selectedProjectIndex, 1);
+
+    selectedProject = Objects.projects[0];
+
+    updateProjectsTabUI();
+
+    clearOutMainContainer();
+    displaySelectedProject(selectedProject);
+})
 //-------------------------------
 
 
@@ -231,3 +253,15 @@ function clearOutMainContainer() {
     }
 }
 
+function clearOutProjectsTab() {
+    const projectsContainer = document.querySelector('.projectsContainer');
+
+    while (projectsContainer.firstChild) {
+        projectsContainer.removeChild(projectsContainer.firstChild);
+    }
+}
+
+function updateProjectsTabUI() {
+    clearOutProjectsTab();
+    displayAllProjects();
+}
