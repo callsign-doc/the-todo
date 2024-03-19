@@ -69,6 +69,10 @@ class ToDoItem {
         this.subTextContent = prompt('Description');
     }
 
+
+    logMessage() {
+        console.log(`Logger: ${this.text}`);
+    };
 }
 
 export function createDefaultTodo() {
@@ -102,23 +106,46 @@ let dummyTodoItem2 = new ToDoItem(
     2, // priority
     'Make sure to understand the project timeline and goals' // subTextContent
 );
+let dummyTodoItem3 = new ToDoItem(
+    false, // done
+    'Review Number 3', // text
+    'Check milestones and deadlines', // moreInfoText
+    todayDate, // dueDate
+    2, // priority
+    'Make sure to understand the project timeline and goals' // subTextContent
+);
 
 
 let projects = [];
 
+export function parseJSONToProjects(projectsJSON) {
+    let parsedProjectsArray = JSON.parse(projectsJSON);
+
+    parsedProjectsArray.forEach(project => {
+        // console.log(`Project:${project.projectName}`);
+        Object.setPrototypeOf(project, new Project());
+
+        project.todoItems.forEach(todoItem => {
+            // console.log(`   Items: ${todoItem.text}`);
+            Object.setPrototypeOf(todoItem, new ToDoItem());
+            
+        });
+    });
+}
+
+
 let dummyProject = new Project('Dummy Project One', [dummyTodoItem,  dummyTodoItem2]);
 let dummyProject2 = new Project('Dummy Project 2', [dummyTodoItem,  dummyTodoItem2, dummyTodoItem]);
 
+// json testing
+let stringedProjects = JSON.stringify(projects);
+parseJSONToProjects(stringedProjects);
 
-console.log(projects)
+// let jsonString = JSON.stringify(dummyTodoItem3);
+// let parsedObj = JSON.parse(jsonString);
+// Object.setPrototypeOf(parsedObj, new ToDoItem());
+// parsedObj.logMessage();
 
-// ----------------------------
-// DUMMY OBJECTS TO TEST JSON -----------------
-let dummyProject3 = new Project('Dummy Project 3', [dummyTodoItem,  dummyTodoItem2]);
-
-let jsonString = JSON.stringify(dummyProject3);
-let parsedObj = JSON.parse(jsonString);
-jsonString.logMessage();
 
 
 
