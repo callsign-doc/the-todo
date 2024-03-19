@@ -15,12 +15,8 @@ class Project {
         this.todoItems.push(todoItem);
     }
 
-    deleteTodoItem(todoItemIndex) {
-        if (todoItemIndex >= 0 && todoItemIndex < this.todoItems.length) {
-            this.todoItems.splice(todoItemIndex, 1);
-        } else {
-            console.error('Invalid todo item index.');
-        }
+    editProjectDetail() {
+        this.projectName = prompt("Project name???");
     }
 
     
@@ -128,7 +124,7 @@ export function parseJSONToProjects(projectsJSON) {
         project.todoItems.forEach(todoItem => {
             // console.log(`   Items: ${todoItem.text}`);
             Object.setPrototypeOf(todoItem, new ToDoItem());
-            
+
         });
     });
 }

@@ -6,6 +6,7 @@ const projectsContainer = document.querySelector('.projectsContainer');
 const moreInfoBtn = document.querySelector('.moreInfo');
 const addProjectBtn = document.querySelector('#addProjectBtn');
 const deleteProjectBtn = document.querySelector('#deleteProjectBtn');
+const editProjectBtn = document.querySelector('#editProjectBtn');
 
 let selectedProject = Objects.projects[0];
 let selectedProjectIndex = 0;
@@ -46,6 +47,15 @@ deleteProjectBtn.addEventListener('click', () => {
     clearOutMainContainer();
     displaySelectedProject(selectedProject);
 })
+
+editProjectBtn.addEventListener('click', () => {
+    selectedProject.editProjectDetail();
+
+    updateProjectsTabUI();
+
+    clearOutMainContainer();
+    displaySelectedProject(selectedProject);
+});
 //-------------------------------
 
 
