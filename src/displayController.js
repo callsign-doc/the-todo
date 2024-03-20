@@ -46,6 +46,8 @@ deleteProjectBtn.addEventListener('click', () => {
 
     clearOutMainContainer();
     displaySelectedProject(selectedProject);
+
+    Objects.saveProjectsToLocalStorage();
 })
 
 editProjectBtn.addEventListener('click', () => {
@@ -61,6 +63,7 @@ editProjectBtn.addEventListener('click', () => {
 
 
 export function displayDefault() {
+    Objects.loadProjectsFromLocalStorage();
     displayAllProjects();
     displaySelectedProject(selectedProject);
 }
@@ -274,4 +277,6 @@ function clearOutProjectsTab() {
 function updateProjectsTabUI() {
     clearOutProjectsTab();
     displayAllProjects();
+
+    Objects.saveProjectsToLocalStorage();
 }

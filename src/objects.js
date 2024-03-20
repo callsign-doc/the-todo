@@ -113,11 +113,33 @@ let dummyTodoItem3 = new ToDoItem(
 
 
 let projects = [];
+const PROJECTS_KEY = 'projectsData';
+const projectsData = localStorage.getItem(PROJECTS_KEY);
+
+export function saveProjectsToLocalStorage() {
+    localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+    console.log('Saving to local storage....');
+}
+
+export function loadProjectsFromLocalStorage() {
+
+    if (projectsData) {
+        // projects = parseJSONToProjects(projectsData);
+        console.log(`found projects data in local storage: ${projectsData}`)
+
+        projects = parseJSONToProjects(projectsData);
+        console.log(`${projects} from loader`)
+    } else {
+        console.log("Cannot find projects data");
+        return null; // Handle if the array is not found in local storage
+    }
+}
 
 export function parseJSONToProjects(projectsJSON) {
     let parsedProjectsArray = JSON.parse(projectsJSON);
 
     parsedProjectsArray.forEach(project => {
+        console.log("parsing projects from local storage")
         // console.log(`Project:${project.projectName}`);
         Object.setPrototypeOf(project, new Project());
 
@@ -127,6 +149,8 @@ export function parseJSONToProjects(projectsJSON) {
 
         });
     });
+
+    return parsedProjectsArray;
 }
 
 
@@ -134,8 +158,8 @@ let dummyProject = new Project('Dummy Project One', [dummyTodoItem,  dummyTodoIt
 let dummyProject2 = new Project('Dummy Project 2', [dummyTodoItem,  dummyTodoItem2, dummyTodoItem]);
 
 // json testing
-let stringedProjects = JSON.stringify(projects);
-parseJSONToProjects(stringedProjects);
+// let stringedProjects = JSON.stringify(projects);
+// parseJSONToProjects(stringedProjects);
 
 // let jsonString = JSON.stringify(dummyTodoItem3);
 // let parsedObj = JSON.parse(jsonString);
