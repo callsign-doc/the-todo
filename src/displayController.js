@@ -70,6 +70,8 @@ export function displayDefault() {
 
 //MAIN LOGIC-----------
 function displayProjectTab(project, index) {
+    Objects.saveProjectsToLocalStorage();
+
     // Create a new div element
     var projectDiv = document.createElement("div");
 
@@ -104,6 +106,7 @@ function displayAllProjects() {
 }
 
 function displayTodoItem(todoItem, index) {
+
     // Create main container
     const container = document.createElement('div');
     container.classList.add('toDoContainer');
@@ -220,6 +223,8 @@ function displayTodoItem(todoItem, index) {
 
 
 export function displaySelectedProject(project) {
+    Objects.saveProjectsToLocalStorage();
+
     let itemIndex = 0;
 
     // Create header div

@@ -118,6 +118,7 @@ const projectsData = localStorage.getItem(PROJECTS_KEY);
 
 export function saveProjectsToLocalStorage() {
     localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+    console.log(projects)
     console.log('Saving to local storage....');
 }
 
