@@ -3,6 +3,8 @@ import * as Objects from "./objects";
 
 
 const projectsContainer = document.querySelector('.projectsContainer');
+
+const toDoItem = document.querySelector('#toDoItem');
 const moreInfoBtn = document.querySelector('.moreInfo');
 const addProjectBtn = document.querySelector('#addProjectBtn');
 const deleteProjectBtn = document.querySelector('#deleteProjectBtn');
@@ -120,7 +122,7 @@ function displayTodoItem(todoItem, index) {
     // Create progress marker
     const progressMarker = document.createElement('div');
     progressMarker.classList.add('progress-marker');
-    progressMarker.textContent = todoItem.done ? '■' : '□';
+
     toDoItem.appendChild(progressMarker);
 
     // Create todo text
@@ -129,7 +131,12 @@ function displayTodoItem(todoItem, index) {
     toDoText.textContent = todoItem.text;
     toDoItem.appendChild(toDoText);
 
-
+    if (todoItem.done) {
+        progressMarker.textContent = '■'
+        toDoText.style.textDecoration = 'line-through';
+    } else {
+        progressMarker.textContent = '□';
+    }
 
     // Create more info button
     const moreInfo = document.createElement('button');
@@ -214,6 +221,15 @@ function displayTodoItem(todoItem, index) {
         subText.textContent = todoItem.subTextContent;
         container.appendChild(subText);
     }
+
+    toDoText.addEventListener('click', function(event) {
+        let dataIndex = parseInt(toDoItem.getAttribute('data-index'));
+
+        console.log(`You are clicking a todo item: ${selectedProject.todoItems[dataIndex].toggleDone()}}`);
+
+        clearOutMainContainer();
+        displaySelectedProject(selectedProject);
+    });
     
 
     // Get the existing main container
