@@ -25,12 +25,12 @@ class Project {
 function logMessage() {
     console.log('Console logger: This is JSON SPARTAAA');
 }
-Project.prototype.logMessage = logMessage;
+
 
 class ToDoItem {
     constructor(done, text, moreInfoText, dueDate, priority, subTextContent) {
-        this.done = done; // Boolean indicating whether the todo item is done
-        this.text = text; // Main text of the todo item
+        this.done = done; 
+        this.text = text; 
         this.moreInfoText = moreInfoText; // Text for the more info section
         this.dueDate = dueDate; // Due date of the todo item
         
@@ -85,7 +85,7 @@ export function createDefaultTodo() {
 }
 
 
-// OBJECTS----------------------------
+// DEFAULT OBJECTS----------------------------
 let dummyTodoItem = new ToDoItem(
     false, // done
     'Complete project', // text
@@ -116,6 +116,7 @@ let projects = [];
 const PROJECTS_KEY = 'projectsData';
 const projectsData = localStorage.getItem(PROJECTS_KEY);
 
+
 export function saveProjectsToLocalStorage() {
     localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
     console.log(projects)
@@ -123,7 +124,6 @@ export function saveProjectsToLocalStorage() {
 }
 
 export function loadProjectsFromLocalStorage() {
-
     if (projectsData) {
         // projects = parseJSONToProjects(projectsData);
         console.log(`found projects data in local storage: ${projectsData}`)
@@ -156,19 +156,4 @@ export function parseJSONToProjects(projectsJSON) {
 
 
 let dummyProject = new Project('Dummy Project One', [dummyTodoItem,  dummyTodoItem2]);
-let dummyProject2 = new Project('Dummy Project 2', [dummyTodoItem,  dummyTodoItem2, dummyTodoItem]);
 
-// json testing
-// let stringedProjects = JSON.stringify(projects);
-// parseJSONToProjects(stringedProjects);
-
-// let jsonString = JSON.stringify(dummyTodoItem3);
-// let parsedObj = JSON.parse(jsonString);
-// Object.setPrototypeOf(parsedObj, new ToDoItem());
-// parsedObj.logMessage();
-
-
-
-
-
-// ----------------------------

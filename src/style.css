@@ -21,7 +21,7 @@ body {
     height: 100%;
 
     display: grid;
-    grid-template-columns: 0.2fr 0.8fr;
+    grid-template-columns: 0.15fr 0.85fr;
     grid-template-rows: 1fr;
 }
 html, body {
@@ -35,7 +35,7 @@ html, body {
 }
 .interactive:hover:hover {
     color: rgb(0, 84, 210);
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
   
 
@@ -54,11 +54,16 @@ html, body {
 .toDoContainer {
     margin-top: 20px;
     width: 45%;
+
+    padding: 10px;
+    border: 1px solid rgb(166, 166, 166);
+    border-radius: 10px; /* Adjust the value to control the roundness */
 }
 #toDoItem {
     display: flex;
     padding: 5px;
     padding-left: 0px;
+
 }
 #toDoText {
     margin-left: 4px;
