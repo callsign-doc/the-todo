@@ -1,4 +1,4 @@
-export {displayProjectTab, displayTodoItem, displayAllProjects};
+
 import * as Objects from "./objects";
 
 
@@ -71,7 +71,7 @@ export function displayDefault() {
 }
 
 //MAIN LOGIC-----------
-function displayProjectTab(project, index) {
+export function displayProjectTab(project, index) {
     Objects.saveProjectsToLocalStorage();
 
     // Create a new div element
@@ -97,7 +97,7 @@ function displayProjectTab(project, index) {
     }
 }
 
-function displayAllProjects() {
+export function displayAllProjects() {
     // reset index
     let index = 0
 
@@ -107,7 +107,7 @@ function displayAllProjects() {
     });
 }
 
-function displayTodoItem(todoItem, index) {
+export function displayTodoItem(todoItem, index) {
 
     // Create main container
     const container = document.createElement('div');
@@ -259,7 +259,7 @@ export function displaySelectedProject(project) {
     renderAddTodoBtn();
 }
 
-function renderAddTodoBtn() {
+export function renderAddTodoBtn() {
     const addButton = document.createElement('button');
     addButton.classList.add('addTodoBtn');
     addButton.textContent = '[➕+]';
@@ -279,7 +279,7 @@ function renderAddTodoBtn() {
 
 
 
-function clearOutMainContainer() {
+export function clearOutMainContainer() {
     const mainContainer = document.querySelector('.mainContainer');
 
     while (mainContainer.firstChild) {
@@ -287,7 +287,7 @@ function clearOutMainContainer() {
     }
 }
 
-function clearOutProjectsTab() {
+export function clearOutProjectsTab() {
     const projectsContainer = document.querySelector('.projectsContainer');
 
     while (projectsContainer.firstChild) {
@@ -295,7 +295,7 @@ function clearOutProjectsTab() {
     }
 }
 
-function updateProjectsTabUI() {
+export function updateProjectsTabUI() {
     clearOutProjectsTab();
     displayAllProjects();
 

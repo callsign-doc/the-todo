@@ -6,7 +6,7 @@ let todayDate = format(new Date(), "d MMMM");
 class Project {
     constructor(projectName, todoItems) {
         this.projectName = projectName;
-        this.todoItems = todoItems;
+        this.todoItems = todoItems || [];
 
         projects.push(this);
     }
