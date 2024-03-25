@@ -19,7 +19,7 @@ export function displayDefault() {
     displayAllProjects();
 
     console.log(`From bazinga displayDefault, getSelectedProject: ${Objects.getSelectedProject()}`);
-    
+
     displaySelectedProject(Objects.getSelectedProject());
     
 }
@@ -228,7 +228,7 @@ export function renderAddTodoBtn() {
         Objects.getSelectedProject().addTodoItem(newItem);
 
         clearOutMainContainer();
-        displaySelectedProject(getSelectedProject());
+        displaySelectedProject(Objects.getSelectedProject());
     });
 }
 
@@ -254,7 +254,7 @@ export function updateDisplay(selectedProject) {
     updateProjectsTabUI();
 
     clearOutMainContainer();
-    displaySelectedProject(selectedProject);
+    displaySelectedProject(Objects.getSelectedProject());
 }
 
 export function updateProjectsTabUI() {

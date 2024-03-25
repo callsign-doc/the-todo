@@ -20,7 +20,9 @@ function handleProjectTabClick(event) {
     const clickedItem = event.target.closest('#projectTab');
     if (clickedItem) {
         const index = parseInt(clickedItem.getAttribute('data-index'), 10);
-        selectedProjectIndex = index;
+
+        Objects.setSelectedProject(index);
+        // alert(`The selected project is ${Objects.getSelectedProject().projectName}`);
 
         selectedProject = Objects.getProjects()[index];
         // alert(selectedProject.projectName);
