@@ -10,15 +10,18 @@ const addProjectBtn = document.querySelector('#addProjectBtn');
 const deleteProjectBtn = document.querySelector('#deleteProjectBtn');
 const editProjectBtn = document.querySelector('#editProjectBtn');
 
-let selectedProject = Objects.projects[0];
-let selectedProjectIndex = 0;
-
+// let selectedProject = Objects.projects[0];
+// let selectedProjectIndex = 0;
 
 
 export function displayDefault() {
     Objects.loadProjectsFromLocalStorage();
     displayAllProjects();
-    displaySelectedProject(selectedProject);
+
+    console.log(`From bazinga displayDefault, getSelectedProject: ${Objects.getSelectedProject()}`);
+    
+    displaySelectedProject(Objects.getSelectedProject());
+    
 }
 
 //MAIN LOGIC-----------
@@ -221,10 +224,11 @@ export function renderAddTodoBtn() {
     // add to do functionality dummy
     addButton.addEventListener("click", function() {
         let newItem = Objects.createDefaultTodo(); // Assuming createNewItem() is a function that creates a new todo item
-        selectedProject.addTodoItem(newItem);
+        // selectedProject.addTodoItem(newItem);
+        Objects.getSelectedProject().addTodoItem(newItem);
 
         clearOutMainContainer();
-        displaySelectedProject(selectedProject);
+        displaySelectedProject(getSelectedProject());
     });
 }
 

@@ -12,7 +12,7 @@ const addProjectBtn = document.querySelector('#addProjectBtn');
 const deleteProjectBtn = document.querySelector('#deleteProjectBtn');
 const editProjectBtn = document.querySelector('#editProjectBtn');
 
-let selectedProject = Objects.getProjects[0];
+let selectedProject = Objects.getProjects()[0];
 let selectedProjectIndex = 0;
 
 // EVENT HANDLER

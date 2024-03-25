@@ -113,10 +113,15 @@ let dummyTodoItem3 = new ToDoItem(
 
 
 let projects = [];
+let dummyProject = new Project('Dummy Project One', [dummyTodoItem,  dummyTodoItem2]);
+
+
+let selectedProject = projects[0];
+let selectedProjectIndex = 0;
+
+
 const PROJECTS_KEY = 'projectsData';
 const projectsData = localStorage.getItem(PROJECTS_KEY);
-
-export function getProjects() { return projects };
 
 export function addNewProject() {
     let projectName = prompt('Project Name');
@@ -168,5 +173,19 @@ export function parseJSONToProjects(projectsJSON) {
 }
 
 
-let dummyProject = new Project('Dummy Project One', [dummyTodoItem,  dummyTodoItem2]);
 
+
+export function getProjects() { return projects };
+export function getSelectedProject() {
+    console.log(`You have called to getSelectedProject, selectedProject: ${selectedProject.projectName}`);
+    return selectedProject
+};
+export function setSelectedProject(index) {
+    if (index >= 0 && index < projects.length) {
+        selectedProjectIndex = index;
+        selectedProject = projects[selectedProjectIndex];
+    } else {
+        console.error('Invalid project index.');
+    }
+}
+export function getSelectedProjectIndex() {return selectedProjectIndex}
