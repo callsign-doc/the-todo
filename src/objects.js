@@ -116,6 +116,17 @@ let projects = [];
 const PROJECTS_KEY = 'projectsData';
 const projectsData = localStorage.getItem(PROJECTS_KEY);
 
+export function addNewProject() {
+    let projectName = prompt('Project Name');
+    let project = new Project(projectName, []);
+}
+
+export function deleteProject(projectsArray, selectedProject, indexToDelete) {
+    projectsArray.splice(indexToDelete, 1);
+
+    selectedProject = projects[0];
+}
+
 
 export function saveProjectsToLocalStorage() {
     localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));

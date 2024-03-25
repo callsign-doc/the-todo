@@ -16,50 +16,7 @@ let selectedProjectIndex = 0;
 
 
 // EVENT LISTENERS-------------------------------
-projectsContainer.addEventListener('click', function(event) {
-    const clickedItem = event.target.closest('#projectTab');
-    if (clickedItem) {
-        const index = parseInt(clickedItem.getAttribute('data-index'), 10);
-        selectedProjectIndex = index;
 
-        selectedProject = Objects.projects[index];
-        // alert(selectedProject.projectName);
-        
-        clearOutMainContainer();
-        displaySelectedProject(selectedProject);
-    }
-});
-
-addProjectBtn.addEventListener('click', () => {
-    let project = new Objects.Project(
-        prompt('Project Name'),
-        [], //empty todo
-    )
-
-    updateProjectsTabUI();
-})
-
-deleteProjectBtn.addEventListener('click', () => {
-    Objects.projects.splice(selectedProjectIndex, 1);
-
-    selectedProject = Objects.projects[0];
-
-    updateProjectsTabUI();
-
-    clearOutMainContainer();
-    displaySelectedProject(selectedProject);
-
-    Objects.saveProjectsToLocalStorage();
-})
-
-editProjectBtn.addEventListener('click', () => {
-    selectedProject.editProjectDetail();
-
-    updateProjectsTabUI();
-
-    clearOutMainContainer();
-    displaySelectedProject(selectedProject);
-});
 //-------------------------------
 
 
@@ -293,6 +250,13 @@ export function clearOutProjectsTab() {
     while (projectsContainer.firstChild) {
         projectsContainer.removeChild(projectsContainer.firstChild);
     }
+}
+
+export function updateDisplay(selectedProject) {
+    updateProjectsTabUI();
+
+    clearOutMainContainer();
+    displaySelectedProject(selectedProject);
 }
 
 export function updateProjectsTabUI() {
