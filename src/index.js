@@ -26,9 +26,10 @@ function handleProjectTabClick(event) {
 
         selectedProject = Objects.getProjects()[index];
         
-        displayController.clearOutMainContainer();
-        displayController.displaySelectedProject(selectedProject);
+        displayController.updateDisplay(Objects.getSelectedProject());
     }
+
+    alert(`${Objects.getSelectedProject()}, todoItems: ${Objects.getSelectedProject().todoItems}`);
 }
 
 function addNewProjectHandler() {
@@ -64,3 +65,4 @@ editProjectBtn.addEventListener('click', editSelectedProject);
 
 // MAIN LOGIC---------------------------------------------------------
 displayController.displayDefault();
+

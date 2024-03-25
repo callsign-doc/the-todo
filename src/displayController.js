@@ -4,15 +4,54 @@ import * as Objects from "./objects";
 
 const projectsContainer = document.querySelector('.projectsContainer');
 
-const toDoItem = document.querySelector('#toDoItem');
+const todoDOM = document.querySelector('#toDoItem');
 const moreInfoBtn = document.querySelector('.moreInfo');
 const addProjectBtn = document.querySelector('#addProjectBtn');
 const deleteProjectBtn = document.querySelector('#deleteProjectBtn');
 const editProjectBtn = document.querySelector('#editProjectBtn');
 
-// let selectedProject = Objects.projects[0];
-// let selectedProjectIndex = 0;
+// EVENT HANDLER ----------------------------------------
+function handleAddTodo() {
+    const newItem = Objects.createDefaultTodo();
+    const selectedProject = Objects.getSelectedProject();
+    selectedProject.addTodoItem(newItem);
 
+    clearOutMainContainer();
+    displaySelectedProject(selectedProject);
+}
+
+function handleMoreInfo(event) {
+    const dataIndex = getItemIndex(event);
+
+    const selectedProject = Objects.getSelectedProject();
+    selectedProject.getTodoItem(dataIndex).toggleMoreInfo();
+
+    updateDisplay(Objects.getSelectedProject());
+
+    console.log(`More info button clicked for todo item with index ${dataIndex}!`);
+}
+
+function handleEditTodo(event) {
+    const toDoItem = event.target.closest('#toDoItem');
+    let dataIndex = getItemIndex(event)
+
+    Objects.getSelectedProject().todoItems[dataIndex].editTodo();
+    updateDisplay(Objects.getSelectedProject());
+}
+
+function handleDeleteButtonClick(event) {
+    let dataIndex = getItemIndex(event)
+
+    Objects.getSelectedProject().deleteTodoItem(dataIndex);
+    updateDisplay(Objects.getSelectedProject());
+}
+// ----------------------------------------
+function getItemIndex(event) {
+    const toDoItem = event.target.closest('#toDoItem');
+    const dataIndex = parseInt(toDoItem.getAttribute('data-index'));
+
+    return dataIndex;
+}
 
 export function displayDefault() {
     Objects.loadProjectsFromLocalStorage();
@@ -21,7 +60,6 @@ export function displayDefault() {
     console.log(`From bazinga displayDefault, getSelectedProject: ${Objects.getSelectedProject()}`);
 
     displaySelectedProject(Objects.getSelectedProject());
-    
 }
 
 //MAIN LOGIC-----------
@@ -98,18 +136,7 @@ export function displayTodoItem(todoItem, index) {
     moreInfo.textContent = 'ℹ️';
     toDoItem.appendChild(moreInfo);
 
-    moreInfo.addEventListener('click', function() {
-        // Retrieve the data-index attribute from the parent todo item
-        let dataIndex = parseInt(toDoItem.getAttribute('data-index'));
-        // selectedProject.todoItems[dataIndex].toggleMoreInfo();
-
-        Objects.getSelectedProject().getTodoItem(dataIndex).toggleMoreInfo();
-
-        updateDisplay(Objects.getSelectedProject());
-
-        // Use the retrieved index as needed
-        console.log(`More info button clicked for todo item with index ${dataIndex}!`);
-    });
+    moreInfo.addEventListener('click', handleMoreInfo);
 
 
     // Create edit button
@@ -118,16 +145,7 @@ export function displayTodoItem(todoItem, index) {
     editButton.textContent = '✍️';
     toDoItem.appendChild(editButton);
 
-    // Add event listener to the edit button
-    editButton.addEventListener('click', function() {
-        let dataIndex = parseInt(toDoItem.getAttribute('data-index'));
-
-        Objects.getSelectedProject().todoItems[dataIndex].editTodo();
-
-        clearOutMainContainer();
-        displaySelectedProject(Objects.getSelectedProject());
-
-    });
+    editButton.addEventListener('click', handleEditTodo);
 
 
     // Create delete button
@@ -136,19 +154,7 @@ export function displayTodoItem(todoItem, index) {
     deleteButton.textContent = '❌';
     toDoItem.appendChild(deleteButton);
 
-    // Add event listener to the delete button
-    deleteButton.addEventListener('click', function() {
-        let dataIndex = parseInt(toDoItem.getAttribute('data-index'));
-        // selectedProject.todoItems.splice(dataIndex, 1);
-
-        Objects.getSelectedProject().deleteTodoItem(dataIndex);
-
-        clearOutMainContainer();
-        displaySelectedProject(Objects.getSelectedProject());
-    });
-
-
-    
+    deleteButton.addEventListener('click', handleDeleteButtonClick);
 
     
     // Create todo info container
@@ -225,14 +231,7 @@ export function renderAddTodoBtn() {
     mainContainer.appendChild(addButton);
 
     // add to do functionality dummy
-    addButton.addEventListener("click", function() {
-        let newItem = Objects.createDefaultTodo(); // Assuming createNewItem() is a function that creates a new todo item
-        // selectedProject.addTodoItem(newItem);
-        Objects.getSelectedProject().addTodoItem(newItem);
-
-        clearOutMainContainer();
-        displaySelectedProject(Objects.getSelectedProject());
-    });
+    addButton.addEventListener("click", handleAddTodo);
 }
 
 
