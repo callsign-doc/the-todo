@@ -11,8 +11,16 @@ class Project {
         projects.push(this);
     }
 
+    getTodoItem(index) {
+        return this.todoItems[index]
+    }
+
     addTodoItem(todoItem) {
         this.todoItems.push(todoItem);
+    }
+
+    deleteTodoItem(index) {
+        this.todoItems.splice(index, 1);
     }
 
     editProjectDetail() {

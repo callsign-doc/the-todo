@@ -25,7 +25,6 @@ function handleProjectTabClick(event) {
         // alert(`The selected project is ${Objects.getSelectedProject().projectName}`);
 
         selectedProject = Objects.getProjects()[index];
-        // alert(selectedProject.projectName);
         
         displayController.clearOutMainContainer();
         displayController.displaySelectedProject(selectedProject);

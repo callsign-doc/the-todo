@@ -101,10 +101,11 @@ export function displayTodoItem(todoItem, index) {
     moreInfo.addEventListener('click', function() {
         // Retrieve the data-index attribute from the parent todo item
         let dataIndex = parseInt(toDoItem.getAttribute('data-index'));
-        selectedProject.todoItems[dataIndex].toggleMoreInfo();
+        // selectedProject.todoItems[dataIndex].toggleMoreInfo();
 
-        clearOutMainContainer();
-        displaySelectedProject(selectedProject);
+        Objects.getSelectedProject().getTodoItem(dataIndex).toggleMoreInfo();
+
+        updateDisplay(Objects.getSelectedProject());
 
         // Use the retrieved index as needed
         console.log(`More info button clicked for todo item with index ${dataIndex}!`);
@@ -119,12 +120,12 @@ export function displayTodoItem(todoItem, index) {
 
     // Add event listener to the edit button
     editButton.addEventListener('click', function() {
-        // Retrieve the data-index attribute from the parent todo item
         let dataIndex = parseInt(toDoItem.getAttribute('data-index'));
-        selectedProject.todoItems[dataIndex].editTodo();
+
+        Objects.getSelectedProject().todoItems[dataIndex].editTodo();
 
         clearOutMainContainer();
-        displaySelectedProject(selectedProject);
+        displaySelectedProject(Objects.getSelectedProject());
 
     });
 
@@ -138,10 +139,12 @@ export function displayTodoItem(todoItem, index) {
     // Add event listener to the delete button
     deleteButton.addEventListener('click', function() {
         let dataIndex = parseInt(toDoItem.getAttribute('data-index'));
-        selectedProject.todoItems.splice(dataIndex, 1);
+        // selectedProject.todoItems.splice(dataIndex, 1);
+
+        Objects.getSelectedProject().deleteTodoItem(dataIndex);
 
         clearOutMainContainer();
-        displaySelectedProject(selectedProject);
+        displaySelectedProject(Objects.getSelectedProject());
     });
 
 
