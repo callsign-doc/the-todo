@@ -116,6 +116,8 @@ let projects = [];
 const PROJECTS_KEY = 'projectsData';
 const projectsData = localStorage.getItem(PROJECTS_KEY);
 
+export function getProjects() { return projects };
+
 export function addNewProject() {
     let projectName = prompt('Project Name');
     let project = new Project(projectName, []);

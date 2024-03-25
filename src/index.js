@@ -12,7 +12,7 @@ const addProjectBtn = document.querySelector('#addProjectBtn');
 const deleteProjectBtn = document.querySelector('#deleteProjectBtn');
 const editProjectBtn = document.querySelector('#editProjectBtn');
 
-let selectedProject = Objects.projects[0];
+let selectedProject = Objects.getProjects[0];
 let selectedProjectIndex = 0;
 
 // EVENT HANDLER
@@ -22,7 +22,7 @@ function handleProjectTabClick(event) {
         const index = parseInt(clickedItem.getAttribute('data-index'), 10);
         selectedProjectIndex = index;
 
-        selectedProject = Objects.projects[index];
+        selectedProject = Objects.getProjects()[index];
         // alert(selectedProject.projectName);
         
         displayController.clearOutMainContainer();

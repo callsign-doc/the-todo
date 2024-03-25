@@ -15,12 +15,6 @@ let selectedProjectIndex = 0;
 
 
 
-// EVENT LISTENERS-------------------------------
-
-//-------------------------------
-
-
-
 export function displayDefault() {
     Objects.loadProjectsFromLocalStorage();
     displayAllProjects();
