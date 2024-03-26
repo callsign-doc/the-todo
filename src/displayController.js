@@ -45,7 +45,18 @@ function handleDeleteButtonClick(event) {
     Objects.getSelectedProject().deleteTodoItem(dataIndex);
     updateDisplay(Objects.getSelectedProject());
 }
+
+function handleToDoTextClick(event) {
+    let dataIndex = getItemIndex(event);
+
+    Objects.getSelectedProject().getTodoItem(dataIndex).toggleDone();
+    updateDisplay(Objects.getSelectedProject());
+}
 // ----------------------------------------
+
+
+
+
 function getItemIndex(event) {
     const toDoItem = event.target.closest('#toDoItem');
     const dataIndex = parseInt(toDoItem.getAttribute('data-index'));
@@ -60,6 +71,7 @@ export function displayDefault() {
     console.log(`From bazinga displayDefault, getSelectedProject: ${Objects.getSelectedProject()}`);
 
     displaySelectedProject(Objects.getSelectedProject());
+
 }
 
 //MAIN LOGIC-----------
@@ -185,14 +197,7 @@ export function displayTodoItem(todoItem, index) {
         container.appendChild(subText);
     }
 
-    toDoText.addEventListener('click', function(event) {
-        let dataIndex = parseInt(toDoItem.getAttribute('data-index'));
-
-        console.log(`You are clicking a todo item: ${selectedProject.todoItems[dataIndex].toggleDone()}}`);
-
-        clearOutMainContainer();
-        displaySelectedProject(selectedProject);
-    });
+    toDoText.addEventListener('click', handleToDoTextClick);
     
 
     // Get the existing main container

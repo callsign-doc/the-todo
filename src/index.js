@@ -29,7 +29,7 @@ function handleProjectTabClick(event) {
         displayController.updateDisplay(Objects.getSelectedProject());
     }
 
-    alert(`${Objects.getSelectedProject()}, todoItems: ${Objects.getSelectedProject().todoItems}`);
+    alert(`${Objects.getProjects()[0].projectName}, todoItems: ${Objects.getProjects()[0].todoItems}`);
 }
 
 function addNewProjectHandler() {
